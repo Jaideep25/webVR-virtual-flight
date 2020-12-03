@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Virtual Flight</title>
+    <!-- IMPORTED LIBRARIES -->
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.min.js"></script>
+
+    <script src="rotation.js"></script>
+    <script src="collision.js"></script>
+  </head>
+  <body>
+    <a-scene id="scene" physics>
+      <!-- Assets Managment -->
+      <a-assets>
+        <!-- GLTF Models-->
+        <a-asset-item
+          id="plane"
+          src="./assets/models/airplane/scene.gltf"
+        ></a-asset-item>
+        <a-asset-item
+          id="terrainMap"
+          src="./assets/models/terrain/scene.gltf"
+        ></a-asset-item>
+        <audio id="powerup" src="./assets/sounds/power_up.mp3"></audio>
+      </a-assets>
+
+      <!-- Terrine -->
+      <a-plane
+        id="terrineBase"
+        width="20"
+        height="20"
+        rotation="-90 0 0"
+        geometry="width: 5000; height: 5000"
+        position="0.03884 -250.75018 -301.45361"
+        color="pink"
+      ></a-plane>
+
+      <a-entity
+        id="#terrain"
+        gltf-model="#terrainMap"
+        position="0 0 0"
+        scale="0.3 0.3 0.3"
+        animation="property: position; to: 0 0 1000;easing:linear; loop: true; dur: 150000"
+        rotation-reader
+      >
+        <a-torus
+          id="ring1"
+          color="yellow"
+          position="0 5 -90"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring1"
+        ></a-torus>
+
+        <a-torus
+          id="ring2"
+          color="yellow"
+          position="50 5 -120"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring2"
+        ></a-torus>
+
+        <a-torus
+          id="ring3"
+          color="yellow"
+          position="-30 5 -120"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring3"
+        ></a-torus>
+
+        <a-torus
+          id="ring4"
+          color="yellow"
+          position="0 5 -150"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring4"
+        ></a-torus>
+
+        <a-torus
+          id="ring5"
+          color="yellow"
+          position="40 5 -150"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring5"
+        ></a-torus>
+
+        <a-torus
+          id="ring6"
+          color="yellow"
+          position="100 5 -150"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring6"
+        ></a-torus>
+
+        <a-torus
+          id="ring7"
+          color="yellow"
+          position="-100 5 -150"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring7"
+        ></a-torus>
+
+        <a-torus
+          id="ring8"
+          color="yellow"
+          position="60 5 -180"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring8"
+        ></a-torus>
+
+        <a-torus
+          id="ring9"
+          color="yellow"
+          position="60 5 180"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring9"
+        ></a-torus>
+
+        <a-torus
+          id="ring10"
+          color="yellow"
+          position="100 5 210"
+          radius="2"
+          radius-tubular="0.2"
+          static-body="shape:sphere;sphereRadius:1;"
+          collision-detector="ringId:#ring10"
+        ></a-torus>
+      </a-entity>
+
+      <!-- Plane -->
+      <a-entity
+        id="plane_model"
+        gltf-model="#plane"
+        position="0 2 15"
+        scale="2 2 2"
+        rotation="0 90 0"
+        plane-rotation-reader
+        dynamic-body="shape:sphere;sphereRadius:3.5;"
+      >
+      </a-entity>
+
+      <!-- Power Up Sound entity -->
+      <a-entity id="powerupsound" sound="src:#powerup"></a-entity>
+      <!-- CAMERA -->
+      <a-entity id="look" camera look-controls position="0 2 25" camera-setter>
+      </a-entity>
+    </a-scene>
+  </body>
+</html>
